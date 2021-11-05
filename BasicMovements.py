@@ -1,12 +1,13 @@
 from djitellopy import tello
 from time import sleep
+import HelperFunctions as hf
 
-me = tello.Tello()
-me.connect()
-print(me.get_battery())
+me = hf.initDrone()
 
 me.takeoff()
-me.send_rc_control(0, 60, 0, 0)
+me.send_rc_control(0, 50, 0, 0)
+sleep(2)
+me.send_rc_control(30, 0, 0, 0)
 sleep(2)
 me.send_rc_control(0, 0, 0, 0)
 me.land()
