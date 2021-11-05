@@ -26,5 +26,5 @@ def getKeyboardInput():
     return [lr, fb, ud, yv]
 
 while True:
-    vals = getKeyboardInput
+    vals = getKeyboardInput()
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
