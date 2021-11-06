@@ -1,15 +1,20 @@
+from djitellopy import tello
 import KeyPressFunctions as kp
 import HelperFunctions as hf
-from time import sleep
+from cv2 import cv2
+import time
 
-kp.init()
+global img
+
 me = hf.initDrone()
+kp.init()
+me.streamon()
 
 def getKeyboardInput():
     lr, fb, ud, yv = 0, 0, 0, 0
     speed = 50
     if kp.getKey('LEFT'): lr = -speed
-    elif kp.getKey('RIGHT'): lr = speed
+    elif kp.getKey('RIGHT'): lr = speed 
 
     if kp.getKey('UP'): fb = speed
     elif kp.getKey('DOWN'): fb = -speed
@@ -23,8 +28,20 @@ def getKeyboardInput():
     if kp.getKey('q'): me.land()
     if kp.getKey('e'): me.takeoff()
 
+    if kp.getKey('z'): 
+        cv2.imwrite(f'Resources/Images/{time.time()}.jpg', img)
+
+    if kp.getKey('b'):
+        print(me.get_current_state())
+
     return [lr, fb, ud, yv]
 
 while True:
     vals = getKeyboardInput()
     me.send_rc_control(vals[0], vals[1], vals[2], vals[3])
+    img = me.get_frame_read().frame
+    img = cv2.resize(img, (360, 240))
+    cv2.putText(img, '{}% battery'.format(me.get_battery()), (5,230), cv2.FONT_HERSHEY_PLAIN,
+                    1, (255, 255, 255), 2)
+    cv2.imshow("Image", img)
+    cv2.waitKey(1)
