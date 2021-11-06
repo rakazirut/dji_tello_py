@@ -1,6 +1,5 @@
-from djitellopy import tello
-import KeyPressFunctions as kp
-import HelperFunctions as hf
+import Helpers.KeyPressFunctions as kp
+import Helpers.HelperFunctions as hf
 from cv2 import cv2
 import time
 
