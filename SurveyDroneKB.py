@@ -24,6 +24,12 @@ def getKeyboardInput():
     if kp.getKey('a'): yv = -speed
     elif kp.getKey('d'): yv = speed
 
+    if kp.getKey('i'): me.flip_forward()
+    if kp.getKey('k'): me.flip_back()
+    if kp.getKey('j'): me.flip_left()
+    if kp.getKey('l'): me.flip_right()
+
+
     if kp.getKey('q'): me.land()
     if kp.getKey('e'): me.takeoff()
 
