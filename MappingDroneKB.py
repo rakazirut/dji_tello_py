@@ -1,7 +1,7 @@
 import Helpers.KeyPressFunctions as kp
 import Helpers.HelperFunctions as hf
 import numpy as np
-from cv2 import cv2
+import cv2
 import time
 import math
 

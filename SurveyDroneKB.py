@@ -1,6 +1,6 @@
 import Helpers.KeyPressFunctions as kp
 import Helpers.HelperFunctions as hf
-from cv2 import cv2
+import cv2
 import time
 
 global img
